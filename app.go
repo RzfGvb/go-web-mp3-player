@@ -42,8 +42,8 @@ func initApp(router *gin.Engine) {
 func handleRoot(c *gin.Context) {
 	id, _ := c.Cookie("JAMPY_USER_ID")
 	//checkCookie(c)
-	files := getFiles(id)
-	if files == nil {
+	fs := getFiles(id)
+	if fs == nil {
 		fmt.Println()
 		c.SetCookie(
 			"JAMPY_USER_ID",
@@ -58,9 +58,10 @@ func handleRoot(c *gin.Context) {
 		c.Redirect(http.StatusPermanentRedirect, "/")
 	} else {
 		c.HTML(200, "s2.html", gin.H{
-			"files":        files,
+			"files":        fs,
 			"search_field": "",
 			"text":         "No files found on yor drive.",
+			"num_files":    len(fs),
 		})
 	}
 }
@@ -83,6 +84,7 @@ func handleSearch(c *gin.Context) {
 		"files":        fs,
 		"search_field": req,
 		"text":         "No songs were found.",
+		"num_files":    len(fs),
 	})
 }
 
