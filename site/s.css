@@ -157,6 +157,7 @@
 @media only screen and (max-device-width: 480px) {
     .song-list, .song {
       width: 100%;
+      margin-left: 0;
     }
 }
 
