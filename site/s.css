@@ -25,7 +25,7 @@
 }
 
 .song {
-  /*height: 50px;*/
+  height: 50px;
   width: 90%;
   margin-left: 10%;
     margin-bottom: 10px;
@@ -40,8 +40,8 @@
 }
 
 .play-button {
-  height: 48px;
   width: 48px;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,7 +56,7 @@
 
 .song-inner-wrapper {
   width: 100%;
-  /*height: 100%;*/
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,16 +64,15 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding-bottom: 4px;
 }
 .song-name {
   color: #555;
   margin-left: 10px;
-  /*height: 50%;*/
+  height: 50%;
 }
 
 .tag-list {
-  /*height: 50%;*/
+  height: 50%;
   width: 100%;
 display: -webkit-box;
 display: -ms-flexbox;
@@ -85,21 +84,20 @@ display: flex;
 .tag-item {
   font-size: small;
   color: #555;
-  height: 15px;
+  height: 100%;
   margin-left: 10px;
-  /*margin-top: 3px;*/
-  margin-bottom: 4px;
-    padding-bottom: 2px;
   background-color: #ddd;
-
+  padding: 2px 3px;
   border-radius: 10%;
 }
 
-.
-
+.tag-item .tag-icon {
+  height: 70%;
+  /*margin-left: 3px;*/
+  margin-right: 3px;
+}
 .tag-item .del-tag {
   height: 60%;
-  /*height: 13px;*/
   margin-left: 3px;
   /*margin-right: 3px;*/
 }
@@ -108,19 +106,16 @@ display: flex;
   cursor: pointer;
 }
 .add-wrapper {
-  /*height: 100%;*/
-  height: 15px;
+  height: 100%;
 }
 .add-img {
-  /*height: 80%;*/
-  height: 13px;
+  height: 80%;
   margin-left: 3px;
   background-color: #AAA;
   cursor: pointer;
 }
 .add-inp {
-  /*height: 90%;*/
-  height: 15px;
+  height: 90%;
   margin-left: 5px;
   border-color: #aaa;
   border-style: dashed;

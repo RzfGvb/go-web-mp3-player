@@ -70,14 +70,10 @@
                     <img src="static/grey-sound.jpg">
                 </div>
                 <div class="song-inner-wrapper">
-                    <div class="song-name">
-                        {{ $f.Name }}
-                    </div>
+                    <div class="song-name">{{ $f.Name }}</div>
                     <div class="tag-list">
                     {{ range $t := $f.Tags}}
-                        <span class="tag-item">
-                          {{ $t }}
-                          <img onclick="delTag('{{ $t }}','{{ $id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
+                        <span class="tag-item">{{ $t }}<img onclick="delTag('{{ $t }}','{{ $id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
                          </span>
                     {{ end }}
                         <img class="add-img" onclick="showInp(this)" src="static/add_plus.png" title="Add New Tag">
