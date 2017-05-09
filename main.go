@@ -9,6 +9,8 @@ import (
 
 	"fmt"
 
+	"os"
+
 	"github.com/boltdb/bolt"
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
@@ -16,10 +18,6 @@ import (
 	"google.golang.org/api/drive/v3"
 	"google.golang.org/api/googleapi"
 	"gopkg.in/gin-gonic/gin.v1"
-)
-
-const (
-	PORT = ":8090"
 )
 
 var (
@@ -31,6 +29,7 @@ var (
 	services = make(map[string]*drive.Service)
 	router   = gin.Default()
 	db       *bolt.DB
+	PORT     = os.Getenv("PORT")
 )
 
 func main() {
