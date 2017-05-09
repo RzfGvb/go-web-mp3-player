@@ -1,5 +1,5 @@
 const cookie_name = "JAMPY_USER_ID";
-var data;
+var songnow = -1;
 function showInp(img) {
     let i = $(img);
     i.hide();
@@ -24,12 +24,13 @@ function delTag(tag, id) {
     });
     window.location.reload()}
 
-function playSong(name, i) {
+function playSong(name, id, i) {
+    songnow = i;
     $("#track").html(name);
     $("#pause").show();
     $("#play").hide();
     var w = document.getElementById("audio");
-    w.src = "/file/"+i+"/x.mp3";
+    w.src = "/file/"+id+"/x.mp3";
     w.play()
     w.volume = $("#vol").val()/100;
 }
@@ -85,5 +86,8 @@ $(document).ready(() => {
             document.getElementById('audio').volume = 0;
             $(this).attr("src", "./static/no-sound-w.png");
         }
+    });
+    $("#forward").click(function () {
+        $("#song-"+(songnow+1)).children(".play-button").trigger("onclick");
     });
 });

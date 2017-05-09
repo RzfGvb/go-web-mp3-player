@@ -40,7 +40,9 @@
                         </div>
                         <div class="form-group">
                             <div class="player">
-                                <img id="vol-img" src="../site/static/sound-w.png" alt="">
+                                <img id="backwards" src="../site/static/backward.png">
+                                <img id="forward" src="../site/static/forward.png">
+                                <img id="vol-img" src="../site/static/sound-w.png">
                                 <input id="vol" type="range" min="0" max="100">
                             </div>
                         </div>
@@ -64,9 +66,10 @@
     {{ else }}
     <div id="app" class="container">
         <div class="song-list">
+            {{ $i := 0 }}
             {{ range $id, $f := .files }}
-            <div id="{{ $id }}" class="song">
-                <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $id }}')">
+            <div id="song-{{$i}}" class="song">
+                <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $id }}', '{{$i}}')">
                     <img src="static/grey-sound.jpg">
                 </div>
                 <div class="song-inner-wrapper">

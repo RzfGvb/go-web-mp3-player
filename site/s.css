@@ -132,7 +132,7 @@
   display: none;
 }
 
-#vol-img {
+#vol-img, #forward, #backwards {
   height: 30px;
 }
 #vol {
