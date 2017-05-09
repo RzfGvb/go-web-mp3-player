@@ -63,7 +63,7 @@ func main() {
 //-----------------------
 
 type file struct {
-	//Id   string   `json:"id"`
+	Id   string   `json:"id"`
 	Name string   `json:"name"`
 	Link string   `json:"link"`
 	Tags []string `json:"tags"`

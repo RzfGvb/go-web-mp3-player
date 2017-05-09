@@ -89,7 +89,7 @@ func handleNewApi(c *gin.Context) {
 	c.Writer.Write(idb)
 }
 
-func getFiles(user string) map[string]*file {
+func getFiles(user string) []*file {
 	filenames := make(map[string]*file)
 	var f1 *file
 	serv := services[user]
@@ -103,6 +103,7 @@ func getFiles(user string) map[string]*file {
 		Pages(ctx, func(fs *drive.FileList) error {
 			for _, f := range fs.Files {
 				f1 = &file{
+					Id:   f.Id,
 					Name: f.Name,
 					Link: f.WebContentLink,
 					Tags: []string{},
@@ -133,7 +134,11 @@ func getFiles(user string) map[string]*file {
 		}
 		return nil
 	})
-	return filenames
+	fs := make([]*file, 0, len(filenames))
+	for _, v := range filenames {
+		fs = append(fs, v)
+	}
+	return fs
 }
 
 func handleFilesApi(c *gin.Context) {
@@ -149,14 +154,15 @@ func handleFilesApi(c *gin.Context) {
 	c.JSON(200, fs)
 }
 
-func makeSearch(id, name, tag string) map[string]*file {
+func makeSearch(id, name, tag string) []*file {
 	fnames := getFiles(id)
 	if fnames == nil {
 		return nil
 	}
-	for id, f := range fnames {
+	for i, f := range fnames {
 		if !strings.Contains(strings.ToLower(f.Name), name) {
-			delete(fnames, id)
+			fnames[i] = nil
+			fnames = append(fnames[:i], fnames[i+1:]...)
 		}
 		if tag != "" {
 			var found bool
@@ -167,7 +173,8 @@ func makeSearch(id, name, tag string) map[string]*file {
 				}
 			}
 			if !found {
-				delete(fnames, id)
+				fnames[i] = nil
+				fnames = append(fnames[:i], fnames[i+1:]...)
 			}
 		}
 	}

@@ -65,26 +65,24 @@
     </h1>
     {{ else }}
     <div id="app" class="container">
-        <div class="song-list">
-            {{ $i := 0 }}
-            {{ range $id, $f := .files }}
+        <div id="song-list">
+            {{ range $i, $f := .files }}
             <div id="song-{{$i}}" class="song">
-                <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $id }}', '{{$i}}')">
+                <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $f.Id }}','{{ $i }}')">
                     <img src="static/grey-sound.jpg">
                 </div>
                 <div class="song-inner-wrapper">
                     <div class="song-name">{{ $f.Name }}</div>
                     <div class="tag-list">
                     {{ range $t := $f.Tags}}
-                        <span class="tag-item">{{ $t }}<img onclick="delTag('{{ $t }}','{{ $id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
+                        <span class="tag-item">{{ $t }}<img onclick="delTag('{{ $t }}','{{ $f.Id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
                          </span>
                     {{ end }}
                         <img class="add-img" onclick="showInp(this)" src="static/add_plus.png" title="Add New Tag">
-                        <input class="add-inp" onchange="addTag(this,'{{ $id }}')" placeholder="Add Tag" style="display: none">
+                        <input class="add-inp" onchange="addTag(this,'{{ $f.Id }}')" placeholder="Add Tag" style="display: none">
                     </div>
                 </div>
             </div>
-            {{$i = $i + 1}}
             {{ end }}
         </div>
     </div>

@@ -72,6 +72,7 @@ func handleSearch(c *gin.Context) {
 	name := c.Query("name")
 	tag := c.Query("tag")
 	files := makeSearch(id, name, tag)
+
 	var req string
 	if name != "" {
 		req = name
@@ -79,7 +80,7 @@ func handleSearch(c *gin.Context) {
 		req = "#" + tag
 	}
 	c.HTML(200, "s2.html", gin.H{
-		"files":        files,
+		"files":        fs,
 		"search_field": req,
 		"text":         "No songs were found.",
 	})
