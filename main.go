@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"myfuncs/my"
 	"net/http"
 	"strings"
 
@@ -35,7 +34,6 @@ var (
 )
 
 func main() {
-	fmt.Println("Started")
 	initAPI(router)
 	initApp(router)
 	var err error
@@ -72,7 +70,9 @@ type fileList []file
 
 func (fl fileList) ToJson() []byte {
 	fs, err := json.Marshal(fl)
-	my.Chk(err)
+	if err != nil {
+		fmt.Println("err: ", err.Error())
+	}
 	return fs
 }
 

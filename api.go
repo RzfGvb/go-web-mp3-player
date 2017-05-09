@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"myfuncs/my"
 	"strings"
 
 	"encoding/json"
@@ -138,8 +137,10 @@ func getFiles(user string) map[string]*file {
 }
 
 func handleFilesApi(c *gin.Context) {
-	idb, e := ioutil.ReadAll(c.Request.Body)
-	my.Chk(e)
+	idb, err := ioutil.ReadAll(c.Request.Body)
+	if err != nil {
+		fmt.Println("err: ", err.Error())
+	}
 	id := string(idb)
 	fs := getFiles(id)
 	if fs == nil {
@@ -178,7 +179,9 @@ func handleSearchApi(c *gin.Context) {
 	tag := c.Query("tag")
 	fmt.Printf("N==%s,T==%s\n", name, tag)
 	idb, e := ioutil.ReadAll(c.Request.Body)
-	my.Chk(e)
+	if e != nil {
+		fmt.Println("err: ", e.Error())
+	}
 	id := string(idb)
 	fnames := makeSearch(id, name, tag)
 	if fnames == nil {
@@ -193,7 +196,9 @@ func handleAddTagApi(c *gin.Context) {
 	song := []byte(songb)
 	tag := c.Param("tag")
 	user, e := ioutil.ReadAll(c.Request.Body)
-	my.Chk(e)
+	if e != nil {
+		fmt.Println("err: ", e.Error())
+	}
 	fmt.Printf("USER: %s, tag: %s, id: %s\n", string(user), tag, songb)
 
 	err := db.Update(func(tx *bolt.Tx) error {
@@ -260,7 +265,9 @@ func handleDeleteTagApi(c *gin.Context) {
 	song := []byte(songb)
 	tag := c.Param("tag")
 	user, e := ioutil.ReadAll(c.Request.Body)
-	my.Chk(e)
+	if e != nil {
+		fmt.Println("err: ", e.Error())
+	}
 	fmt.Printf("USER: %s, tag: %s, id: %s\n", string(user), tag, songb)
 
 	err := db.Update(func(tx *bolt.Tx) error {
@@ -309,8 +316,10 @@ func handleDeleteTagApi(c *gin.Context) {
 
 func handleFileApi(c *gin.Context) {
 	id := c.Param("id")
-	idb, e := ioutil.ReadAll(c.Request.Body)
-	my.Chk(e)
+	idb, err := ioutil.ReadAll(c.Request.Body)
+	if err != nil {
+		fmt.Println("err: ", err.Error())
+	}
 	user := string(idb)
 	serv := services[user]
 	if serv == nil {
