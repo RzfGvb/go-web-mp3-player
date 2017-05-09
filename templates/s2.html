@@ -66,6 +66,7 @@
     {{ else }}
     <div id="app" class="container">
         <div id="song-list">
+            <script>var num_songs = {{len .file}}</script>
             {{ range $i, $f := .files }}
             <div id="song-{{$i}}" class="song">
                 <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $f.Id }}',{{ $i }})">

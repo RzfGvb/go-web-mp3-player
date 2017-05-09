@@ -134,6 +134,8 @@
 
 #vol-img, #forward, #backwards {
   height: 30px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 #vol {
   color: white;

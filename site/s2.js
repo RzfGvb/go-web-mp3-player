@@ -26,6 +26,7 @@ function delTag(tag, id) {
 
 function playSong(name, id, i) {
     songnow = i;
+    $("#time").html("00:00");
     $("#track").html(name);
     $("#pause").show();
     $("#play").hide();
@@ -88,6 +89,17 @@ $(document).ready(() => {
         }
     });
     $("#forward").click(function () {
-        $("#song-"+(++songnow)).children(".play-button").trigger("onclick");
+        ++songnow;
+        if (songnow === num_songs) {
+            songnow = 0;
+        }
+        $("#song-"+songnow).children(".play-button").trigger("onclick");
+    });
+    $("#forward").click(function () {
+        --songnow;
+        if (songnow === -1) {
+            songnow = num_songs -1 ;
+        }
+        $("#song-"+songnow).children(".play-button").trigger("onclick");
     });
 });

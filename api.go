@@ -138,6 +138,7 @@ func getFiles(user string) []*file {
 	for _, v := range filenames {
 		fs = append(fs, v)
 	}
+	fmt.Println("LEN:", len(fs))
 	return fs
 }
 
