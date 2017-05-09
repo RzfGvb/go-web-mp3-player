@@ -45,7 +45,7 @@ func main() {
 		tok := new(oauth2.Token)
 		tx.ForEach(func(name []byte, b *bolt.Bucket) error {
 			bt := b.Get([]byte("token"))
-			if bt == nil {
+			if bt == nil || len(bt) == 0 {
 				return nil
 			}
 			json.Unmarshal(bt, tok)
