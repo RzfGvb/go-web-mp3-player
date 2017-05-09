@@ -22,26 +22,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand navbar-link" href="/"><div id="logo"><img style="height: 30px" src="../site/static/logo-w-2.png">.mp3</div></a>
+                <a class="navbar-brand navbar-link" href="/">
+                    <div id="logo"><img style="height: 30px" src="../site/static/logo-w-2.png">.mp3</div>
+                </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
                     <div class="form-group">
-                            <div class="form-group">
-                                <div class="player">
-                                    <img id="play" src="../site/static/play-white.png" onclick="document.getElementById('audio').play(); $(this).hide(); $('#pause').show()">
-                                    <img id="pause" src="../site/static/pause-white.png" onclick="document.getElementById('audio').pause(); $(this).hide(); $('#play').show()">
-                                    <audio id="audio" type="audio/mpeg"></audio>
-                                    <span id="track"><p>No Content</p></span>
-                                    <span id="time">00:00</span>
-                                </div>
+                        <div class="form-group">
+                            <div class="player">
+                                <img id="play" src="../site/static/play-white.png" onclick="document.getElementById('audio').play(); $(this).hide(); $('#pause').show()">
+                                <img id="pause" src="../site/static/pause-white.png" onclick="document.getElementById('audio').pause(); $(this).hide(); $('#play').show()">
+                                <audio id="audio" type="audio/mpeg"></audio>
+                                <span id="track"><p>No Content</p></span>
+                                <span id="time">00:00</span>
                             </div>
-                            <div class="form-group">
-                                <div class="player">
-                                    <img id="vol-img" src="../site/static/sound-w.png" alt="">
-                                    <input id="vol" type="range" min="0" max="100">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="player">
+                                <img id="vol-img" src="../site/static/sound-w.png" alt="">
+                                <input id="vol" type="range" min="0" max="100">
                             </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <input value="{{ .search_field }}" type="text" class="form-control" placeholder="name or #tag" onchange="search(this)" title="start with # to search for tags">
@@ -70,15 +72,16 @@
                 <div class="song-inner-wrapper">
                     <div class="song-name">
                         <p>
-                        {{ $f.Name }}
+                            {{ $f.Name }}
                         </p>
                     </div>
                     <div class="tag-list">
-                        {{ range $t := $f.Tags}}
+                    {{ range $t := $f.Tags}}
                         <span class="tag-item">
-                      {{ $t }}
-                      <img onclick="delTag('{{ $t }}','{{ $id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
-                     </span> {{ end }}
+                          {{ $t }}
+                          <img onclick="delTag('{{ $t }}','{{ $id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
+                         </span>
+                    {{ end }}
                         <img class="add-img" onclick="showInp(this)" src="static/add_plus.png" title="Add New Tag">
                         <input class="add-inp" onchange="addTag(this,'{{ $id }}')" placeholder="Add Tag" style="display: none">
                     </div>
@@ -89,7 +92,7 @@
     </div>
 
     {{ end }}
-<button onclick="console.log(document.getElementById('audio').duration)"></button>
+    <button onclick="console.log(document.getElementById('audio').duration)"></button>
 </body>
 
 </html>
