@@ -90,7 +90,7 @@ func handleNewApi(c *gin.Context) {
 }
 
 func getFiles(user string) []*file {
-	filenames := make(map[string]*file)
+	filenames := make(map[string]*file, 50)
 	var f1 *file
 	serv := services[user]
 	if serv == nil {
@@ -112,6 +112,7 @@ func getFiles(user string) []*file {
 			}
 			return nil
 		})
+	fmt.Println("LEN:", len(filenames))
 	db.Update(func(tx *bolt.Tx) error {
 		root := tx.Bucket([]byte(user))
 		b := root.Bucket([]byte("files"))
