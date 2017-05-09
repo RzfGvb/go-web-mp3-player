@@ -51,7 +51,7 @@ func main() {
 		})
 		return nil
 	})
-	router.Run(PORT)
+	router.Run(":" + PORT)
 }
 
 //-----------------------
