@@ -78,9 +78,7 @@
                     <div class="tag-list">
                     {{ range $t := $f.Tags}}
                         <span class="tag-item">
-                            <span>
                           {{ $t }}
-                            </span>
                           <img onclick="delTag('{{ $t }}','{{ $id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
                          </span>
                     {{ end }}
