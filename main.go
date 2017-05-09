@@ -41,19 +41,20 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	db.View(func(tx *bolt.Tx) error {
-		tok := new(oauth2.Token)
-		tx.ForEach(func(name []byte, b *bolt.Bucket) error {
-			bt := b.Get([]byte("token"))
-			if bt == nil || len(bt) == 0 {
-				return nil
-			}
-			json.Unmarshal(bt, tok)
-			resetClient(tok)
-			return nil
-		})
-		return nil
-	})
+	fmt.Println("DEBUG")
+	//db.View(func(tx *bolt.Tx) error {
+	//	tok := new(oauth2.Token)
+	//	tx.ForEach(func(name []byte, b *bolt.Bucket) error {
+	//		bt := b.Get([]byte("token"))
+	//		if bt == nil || len(bt) == 0 {
+	//			return nil
+	//		}
+	//		json.Unmarshal(bt, tok)
+	//		resetClient(tok)
+	//		return nil
+	//	})
+	//	return nil
+	//})
 	router.Run(":" + PORT)
 }
 
