@@ -68,7 +68,7 @@
         <div class="song-list">
             {{ $i := 0 }}
             {{ range $id, $f := .files }}
-            <div id="song-{{$i}}" class="song">
+            <div id="song-{{$i++}}" class="song">
                 <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $id }}', '{{$i}}')">
                     <img src="static/grey-sound.jpg">
                 </div>
