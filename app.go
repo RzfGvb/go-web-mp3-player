@@ -136,8 +136,10 @@ func checkCookie(c *gin.Context) {
 		fmt.Println("=========NO COOKIE============")
 		fmt.Println(c.Request.Cookies())
 		fmt.Println(c.Request.Host)
-		config.RedirectURL = "http://" + c.Request.Host + "/reg"
-		authURL := config.AuthCodeURL("state-token", oauth2.AccessTypeOffline)
+		//config.RedirectURL = "http://" + c.Request.Host + "/reg"
+		config.RedirectURL = "postmessage"
+
+		authURL := config.AuthCodeURL("state-token", oauth2.AccessTypeOffline, oauth2.AccessTypeOnline)
 		c.Redirect(http.StatusTemporaryRedirect, authURL)
 	}
 }
