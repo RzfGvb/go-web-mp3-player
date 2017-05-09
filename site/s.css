@@ -90,7 +90,8 @@ display: flex;
   margin-top: 3px;
   margin-bottom: 4px;
   background-color: #ddd;
-  padding: 2px 3px;
+  /*padding: 2px 3px;*/
+  
   border-radius: 10%;
 }
 
