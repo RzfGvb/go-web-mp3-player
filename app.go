@@ -71,7 +71,7 @@ func handleSearch(c *gin.Context) {
 	id, _ := c.Cookie("JAMPY_USER_ID")
 	name := c.Query("name")
 	tag := c.Query("tag")
-	files := makeSearch(id, name, tag)
+	fs := makeSearch(id, name, tag)
 
 	var req string
 	if name != "" {

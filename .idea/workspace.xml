@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9abf8501-0747-415a-8c0a-2a3ad3bbc7e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api.go" afterPath="$PROJECT_DIR$/api.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.go" afterPath="$PROJECT_DIR$/app.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site/s.css" afterPath="$PROJECT_DIR$/site/s.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site/s2.js" afterPath="$PROJECT_DIR$/site/s2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/s2.html" afterPath="$PROJECT_DIR$/templates/s2.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
@@ -46,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="77" column="18" lean-forward="true" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
               <folding>
                 <element signature="e#14#134#0" expanded="true" />
               </folding>
@@ -154,10 +148,10 @@
         <option value="$PROJECT_DIR$/templates/search.html" />
         <option value="$PROJECT_DIR$/site/s.css" />
         <option value="$PROJECT_DIR$/main.go" />
-        <option value="$PROJECT_DIR$/app.go" />
         <option value="$PROJECT_DIR$/api.go" />
         <option value="$PROJECT_DIR$/templates/s2.html" />
         <option value="$PROJECT_DIR$/site/s2.js" />
+        <option value="$PROJECT_DIR$/app.go" />
       </list>
     </option>
   </component>
@@ -616,16 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
@@ -639,6 +623,16 @@
         <state relative-caret-position="242">
           <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="77" column="18" lean-forward="true" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+          <folding>
+            <element signature="e#14#134#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
