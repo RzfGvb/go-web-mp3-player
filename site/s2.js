@@ -88,6 +88,6 @@ $(document).ready(() => {
         }
     });
     $("#forward").click(function () {
-        $("#song-"+(songnow+1)).children(".play-button").trigger("onclick");
+        $("#song-"+(++songnow)).children(".play-button").trigger("onclick");
     });
 });
