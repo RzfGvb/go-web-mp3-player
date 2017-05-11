@@ -59,7 +59,7 @@ func handleRoot(c *gin.Context) {
 		fmt.Println()
 		c.SetCookie(
 			"JAMPY_USER_ID",
-			id,
+			"none",
 			-1,
 			"",
 			"",
