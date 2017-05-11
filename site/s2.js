@@ -95,7 +95,7 @@ $(document).ready(() => {
         }
         $("#song-"+songnow).children(".play-button").trigger("onclick");
     });
-    $("#forward").click(function () {
+    $("#backwards").click(function () {
         --songnow;
         if (songnow === -1) {
             songnow = num_songs -1 ;
