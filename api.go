@@ -13,6 +13,7 @@ import (
 	"github.com/boltdb/bolt"
 	"golang.org/x/oauth2"
 	"google.golang.org/api/drive/v3"
+	"google.golang.org/api/googleapi"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -98,7 +99,7 @@ func getFiles(user string) []*file {
 		return nil
 	}
 	serv.Files.List().
-		Fields(createField("id", "name", "webContentLink", "size")).
+		Fields(createFilesFields("id", "name", "webContentLink", "size"), googleapi.Field("nextPageToken")).
 		Q("mimeType='audio/mpeg'").
 		Pages(ctx, func(fs *drive.FileList) error {
 			for _, f := range fs.Files {

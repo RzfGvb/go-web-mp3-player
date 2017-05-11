@@ -96,7 +96,7 @@ func getConfig() *oauth2.Config {
 	return config
 }
 
-func createField(fs ...string) googleapi.Field {
+func createFilesFields(fs ...string) googleapi.Field {
 	//arr := make([]string, len(fs))
 	//for i, s := range fs {
 	//	arr[i] = s
