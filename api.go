@@ -92,7 +92,7 @@ func handleNewApi(c *gin.Context) {
 
 func getFiles(user string) []*file {
 	//filenames := make(map[string]*file, 50)
-	filenames := make([]*file, 100)
+	filenames := make([]*file, 0, 100)
 	var f1 *file
 	serv := services[user]
 	if serv == nil {
@@ -118,43 +118,26 @@ func getFiles(user string) []*file {
 	fmt.Println("LEN:", len(filenames))
 	db.Update(func(tx *bolt.Tx) error {
 		root := tx.Bucket([]byte(user))
+		//b, err := root.CreateBucketIfNotExists([]byte("files"))
 		b := root.Bucket([]byte("files"))
+		if b == nil {
+			return nil
+		}
 		for _, f := range filenames {
 			v := b.Get([]byte(f.Id))
 			if v == nil {
 				continue
 			}
 			var tags []string
-			tags = make([]string, 10)
+			tags = make([]string, 0, 10)
 			err := json.Unmarshal(v, &tags)
 			if err != nil {
 				return err
 			}
 			f.Tags = tags
 		}
-		//err := b.ForEach(func(k, v []byte) error {
-		//	id := string(k)
-		//	if f, ok := filenames[id]; ok {
-		//		var tags []string
-		//		err := json.Unmarshal(v, &tags)
-		//		if err != nil {
-		//			return err
-		//		}
-		//		f.Tags = tags
-		//	} else {
-		//		b.Delete(k)
-		//	}
-		//	return nil
-		//})
-		//if err != nil {
-		//	return err
-		//}
 		return nil
 	})
-	//fs := make([]*file, 0, len(filenames))
-	//for _, v := range filenames {
-	//	fs = append(fs, v)
-	//}
 	fmt.Println("LEN:", len(filenames))
 	return filenames
 }
