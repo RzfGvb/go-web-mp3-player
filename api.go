@@ -125,6 +125,7 @@ func getFiles(user string) []*file {
 				continue
 			}
 			var tags []string
+			tags = make([]string, 10)
 			err := json.Unmarshal(v, &tags)
 			if err != nil {
 				return err
