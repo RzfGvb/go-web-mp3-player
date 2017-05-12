@@ -111,11 +111,6 @@ func getConfig() *oauth2.Config {
 }
 
 func createFilesFields(fs ...string) googleapi.Field {
-	//arr := make([]string, len(fs))
-	//for i, s := range fs {
-	//	arr[i] = s
-	//}
-
 	return googleapi.Field(
 		"files(" + strings.Join(fs, ",") + ")",
 	)
