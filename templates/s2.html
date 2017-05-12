@@ -63,7 +63,6 @@
         </div>
     </nav>
 
-    {{ $x := 1 }}
     {{if eq (len .files) 0 }}
     <h1 style="text-align: center">
         {{ .text }}
@@ -87,13 +86,11 @@
                         <input class="add-inp" onchange="addTag(this,'{{ $f.Id }}')" placeholder="Add Tag" style="display: none">
                     </div>
                 </div>
-                {{$x = inc $x }}
             </div>
             {{ end }}
         </div>
     </div>
     {{ end }}
-<div>x = {{$x}}</div>
 </body>
 
 </html>

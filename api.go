@@ -91,7 +91,8 @@ func handleNewApi(c *gin.Context) {
 }
 
 func getFiles(user string) []*file {
-	filenames := make(map[string]*file, 50)
+	//filenames := make(map[string]*file, 50)
+	filenames := make([]*file, 100)
 	var f1 *file
 	serv := services[user]
 	if serv == nil {
@@ -109,7 +110,8 @@ func getFiles(user string) []*file {
 					Link: f.WebContentLink,
 					Tags: []string{},
 				}
-				filenames[f.Id] = f1
+				filenames = append(filenames, f1)
+				//filenames[f.Id] = f1
 			}
 			return nil
 		})
@@ -117,31 +119,43 @@ func getFiles(user string) []*file {
 	db.Update(func(tx *bolt.Tx) error {
 		root := tx.Bucket([]byte(user))
 		b := root.Bucket([]byte("files"))
-		err := b.ForEach(func(k, v []byte) error {
-			id := string(k)
-			if f, ok := filenames[id]; ok {
-				var tags []string
-				err := json.Unmarshal(v, &tags)
-				if err != nil {
-					return err
-				}
-				f.Tags = tags
-			} else {
-				b.Delete(k)
+		for _, f := range filenames {
+			v := b.Get([]byte(f.Id))
+			if v == nil {
+				continue
 			}
-			return nil
-		})
-		if err != nil {
-			return err
+			var tags []string
+			err := json.Unmarshal(v, &tags)
+			if err != nil {
+				return err
+			}
+			f.Tags = tags
 		}
+		//err := b.ForEach(func(k, v []byte) error {
+		//	id := string(k)
+		//	if f, ok := filenames[id]; ok {
+		//		var tags []string
+		//		err := json.Unmarshal(v, &tags)
+		//		if err != nil {
+		//			return err
+		//		}
+		//		f.Tags = tags
+		//	} else {
+		//		b.Delete(k)
+		//	}
+		//	return nil
+		//})
+		//if err != nil {
+		//	return err
+		//}
 		return nil
 	})
-	fs := make([]*file, 0, len(filenames))
-	for _, v := range filenames {
-		fs = append(fs, v)
-	}
-	fmt.Println("LEN:", len(fs))
-	return fs
+	//fs := make([]*file, 0, len(filenames))
+	//for _, v := range filenames {
+	//	fs = append(fs, v)
+	//}
+	fmt.Println("LEN:", len(filenames))
+	return filenames
 }
 
 func handleFilesApi(c *gin.Context) {
