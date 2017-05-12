@@ -25,11 +25,11 @@ function delTag(tag, id) {
     window.location.reload()}
 
 function playSong(name, id, i) {
-    $("#song-", +songnow).removeClass("playing");
-    $("#song-", +songnow).addClass("not-playing");
+    $("#song-"+songnow).removeClass("playing");
+    $("#song-"+songnow).addClass("not-playing");
     songnow = i;
-    $("#song-", +i).removeClass("not-playing");
-    $("#song-", +i).addClass("playing");
+    $("#song-" +i).removeClass("not-playing");
+    $("#song-" +i).addClass("playing");
     $("#time").html("00:00");
     $("#track").html(name);
     $("#pause").show();
