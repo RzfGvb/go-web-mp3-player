@@ -70,7 +70,7 @@ func handleNewApi(c *gin.Context) {
 	}
 	idb := []byte(id)
 	fmt.Println("Registered a user")
-	db.Update(func(tx *bolt.Tx) error {
+	dbUpdate(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucketIfNotExists([]byte(idb))
 		if err != nil {
 			return fmt.Errorf("create bucket: %s", err)
@@ -116,7 +116,7 @@ func getFiles(user string) []*file {
 			return nil
 		})
 	fmt.Println("LEN:", len(filenames))
-	db.View(func(tx *bolt.Tx) error {
+	dbView(func(tx *bolt.Tx) error {
 		root := tx.Bucket([]byte(user))
 		b := root.Bucket([]byte("files"))
 		if b == nil {
@@ -208,7 +208,7 @@ func handleAddTagApi(c *gin.Context) {
 	}
 	fmt.Printf("USER: %s, tag: %s, id: %s\n", string(user), tag, songb)
 
-	err := db.Update(func(tx *bolt.Tx) error {
+	err := dbUpdate(func(tx *bolt.Tx) error {
 		root := tx.Bucket(user)
 		if root == nil {
 			fmt.Println("ops")
@@ -277,7 +277,7 @@ func handleDeleteTagApi(c *gin.Context) {
 	}
 	fmt.Printf("USER: %s, tag: %s, id: %s\n", string(user), tag, songb)
 
-	err := db.Update(func(tx *bolt.Tx) error {
+	err := dbUpdate(func(tx *bolt.Tx) error {
 		root := tx.Bucket(user)
 		if root == nil {
 			fmt.Println("ops")

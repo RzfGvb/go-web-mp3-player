@@ -28,19 +28,18 @@ var (
 	service  *drive.Service
 	services = make(map[string]*drive.Service)
 	router   = gin.Default()
-	db       *bolt.DB
 	PORT     = os.Getenv("PORT")
 )
 
 func main() {
 	initAPI(router)
 	initApp(router)
-	var err error
-	db, err = bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func() { db.Close() }()
+	//var err error
+	//db, err = bolt.Open("my.db", 0600, nil)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//defer db.Close()
 	fmt.Println("DEBUG")
 	//db.View(func(tx *bolt.Tx) error {
 	//	tok := new(oauth2.Token)
@@ -59,6 +58,26 @@ func main() {
 	//	return nil
 	//})
 	router.Run(":" + PORT)
+}
+
+func dbView(f func(tx *bolt.Tx) error) error {
+	db, err := bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	return db.View(f)
+}
+
+func dbUpdate(f func(tx *bolt.Tx) error) error {
+	db, err := bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	return db.Update(f)
 }
 
 //-----------------------
