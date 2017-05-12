@@ -63,12 +63,12 @@
         </div>
     </nav>
 
-    {{if eq (len .files) 0 }}
-    <h1 style="text-align: center">
-        {{ .text }}
-    </h1>
-    {{ else }}
     <div id="app" class="container">
+        {{if eq (len .files) 0 }}
+        <h1 style="text-align: center">
+            {{ .text }}
+        </h1>
+        {{ else }}
         <div id="song-list">
             {{ range $i, $f := .files }}
             <div id="song-{{$i}}" class="song not-playing">
