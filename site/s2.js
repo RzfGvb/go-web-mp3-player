@@ -93,17 +93,17 @@ $(document).ready(() => {
         }
     });
     $("#forward").click(function () {
-        ++songnow;
-        if (songnow === num_songs) {
-            songnow = 0;
+        var next = songnow+1;
+        if (next === num_songs) {
+            next = 0;
         }
-        $("#song-"+songnow).children(".play-button").trigger("onclick");
+        $("#song-"+next).children(".play-button").trigger("onclick");
     });
     $("#backwards").click(function () {
-        --songnow;
-        if (songnow === -1) {
-            songnow = num_songs -1 ;
+        var next = songnow - 1;
+        if (next === -1) {
+            next = num_songs -1;
         }
-        $("#song-"+songnow).children(".play-button").trigger("onclick");
+        $("#song-"+next).children(".play-button").trigger("onclick");
     });
 });
