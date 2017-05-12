@@ -39,7 +39,7 @@ func main() {
 	initAPI(router)
 	initApp(router)
 	var err error
-	db, err = bolt.Open("my.db", 0600, nil)
+	db, err = bolt.Open("my.db", os.FileMode(os.O_RDWR), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
