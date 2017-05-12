@@ -91,7 +91,6 @@ func handleNewApi(c *gin.Context) {
 }
 
 func getFiles(user string) []*file {
-	//filenames := make(map[string]*file, 50)
 	filenames := make([]*file, 0, 100)
 	var f1 *file
 	serv := services[user]

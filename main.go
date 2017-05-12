@@ -11,7 +11,10 @@ import (
 
 	"os"
 
+	"os/signal"
+
 	"github.com/boltdb/bolt"
+	"github.com/braintree/manners"
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -57,7 +60,16 @@ func main() {
 	//	})
 	//	return nil
 	//})
-	router.Run(":" + PORT)
+	go func() {
+		sigchan := make(chan os.Signal, 1)
+		signal.Notify(sigchan, os.Interrupt, os.Kill)
+		<-sigchan
+		log.Println("Shutting down...")
+		manners.Close()
+	}()
+	log.Fatal(manners.ListenAndServe(":"+PORT, router))
+	//log.Fatal(router.Run(":" + PORT))
+
 }
 
 func dbView(f func(tx *bolt.Tx) error) error {
