@@ -33,8 +33,6 @@ func initApp(router *gin.Engine) {
 	router.Static("/skin/blue.monday/css", "./site/skin/blue.monday/css")
 	router.Static("/skin/blue.monday/image", "./site/skin/blue.monday/image")
 	router.Static("/skin/blue.monday/mustache", "./site/skin/blue.monday/mustache")
-
-	//router.LoadHTMLGlob("templates/*")
 	funcName := template.FuncMap{
 		"inc": func(i int) int {
 			return i + 1
