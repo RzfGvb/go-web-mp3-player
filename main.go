@@ -32,17 +32,17 @@ var (
 	services = make(map[string]*drive.Service)
 	router   = gin.Default()
 	PORT     = os.Getenv("PORT")
+	db       *bolt.DB
 )
 
 func main() {
 	initAPI(router)
 	initApp(router)
-	//var err error
-	//db, err = bolt.Open("my.db", 0600, nil)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//defer db.Close()
+	var err error
+	db, err = bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Println("DEBUG")
 	//db.View(func(tx *bolt.Tx) error {
 	//	tok := new(oauth2.Token)
@@ -65,31 +65,11 @@ func main() {
 		signal.Notify(sigchan, os.Interrupt, os.Kill)
 		<-sigchan
 		log.Println("Shutting down...")
+		db.Close()
 		manners.Close()
 	}()
+	fmt.Println("Serving on port:", PORT)
 	log.Fatal(manners.ListenAndServe(":"+PORT, router))
-	//log.Fatal(router.Run(":" + PORT))
-
-}
-
-func dbView(f func(tx *bolt.Tx) error) error {
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
-
-	return db.View(f)
-}
-
-func dbUpdate(f func(tx *bolt.Tx) error) error {
-	db, err := bolt.Open("my.db", 0600, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
-
-	return db.Update(f)
 }
 
 //-----------------------
