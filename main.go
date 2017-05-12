@@ -42,22 +42,22 @@ func main() {
 	}
 	defer func() { db.Close() }()
 	fmt.Println("DEBUG")
-	db.View(func(tx *bolt.Tx) error {
-		tok := new(oauth2.Token)
-		tx.ForEach(func(name []byte, b *bolt.Bucket) error {
-			bt := b.Get([]byte("token"))
-			if bt == nil || len(bt) == 0 {
-				return nil
-			}
-			err := json.Unmarshal(bt, tok)
-			if err != nil {
-
-			}
-			resetClient(tok)
-			return nil
-		})
-		return nil
-	})
+	//db.View(func(tx *bolt.Tx) error {
+	//	tok := new(oauth2.Token)
+	//	tx.ForEach(func(name []byte, b *bolt.Bucket) error {
+	//		bt := b.Get([]byte("token"))
+	//		if bt == nil || len(bt) == 0 {
+	//			return nil
+	//		}
+	//		err := json.Unmarshal(bt, tok)
+	//		if err != nil {
+	//
+	//		}
+	//		resetClient(tok)
+	//		return nil
+	//	})
+	//	return nil
+	//})
 	router.Run(":" + PORT)
 }
 
