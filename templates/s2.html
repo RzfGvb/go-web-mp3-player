@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Player.mp3</title>
 
+    <script>let num_songs = {{ .num_files }}</script>
     <script type="text/javascript" src="../site/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../site/jquery.cookie.js"></script>
     <script type="text/javascript" src="../site/bootstrap/js/bootstrap.min.js"></script>
@@ -29,6 +30,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
                     <div class="form-group">
+                    <div class="form-group">
                         <div class="form-group">
                             <div class="player">
                                 <img id="play" src="../site/static/play-white.png" onclick="document.getElementById('audio').play(); $(this).hide(); $('#pause').show()">
@@ -50,9 +52,8 @@
                     <div class="form-group">
                         <input value="{{ .search_field }}" type="text" class="form-control" placeholder="name or #tag" onchange="search(this)" title="start with # to search for tags">
                     </div>
-                    <!--<div class="form-group">-->
                     <button id="logout" class="btn btn-success">Log out</button>
-                    <!--</div>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,7 +67,6 @@
     {{ else }}
     <div id="app" class="container">
         <div id="song-list">
-            <script>var num_songs = {{ .num_files }}</script>
             {{ range $i, $f := .files }}
             <div id="song-{{$i}}" class="song">
                 <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $f.Id }}',{{ $i }})">
@@ -77,7 +77,7 @@
                     <div class="tag-list">
                     {{ range $t := $f.Tags}}
                         <span class="tag-item">{{ $t }}<img onclick="delTag('{{ $t }}','{{ $f.Id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
-                         </span>
+                        </span>
                     {{ end }}
                         <img class="add-img" onclick="showInp(this)" src="static/add_plus.png" title="Add New Tag">
                         <input class="add-inp" onchange="addTag(this,'{{ $f.Id }}')" placeholder="Add Tag" style="display: none">
@@ -89,7 +89,6 @@
     </div>
 
     {{ end }}
-    <button onclick="console.log(document.getElementById('audio').duration)"></button>
 </body>
 
 </html>
