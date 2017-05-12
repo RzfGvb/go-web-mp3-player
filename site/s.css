@@ -8,7 +8,7 @@
     align-items: flex-end;
 }
 #app {
-  margin-top: 52px;
+  margin-top: 150px;
   min-height: 100%;
   width: 100%;
 }
@@ -171,6 +171,9 @@
       width: 100%;
       margin-left: 0;
     }
+  #app {
+    margin-top: 52px;
+  }
 }
 
 
