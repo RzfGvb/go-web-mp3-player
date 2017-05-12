@@ -15,7 +15,6 @@
 
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!--<div class="container">-->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -29,8 +28,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
-                    <!--<div class="form-group">-->
-                    <!--<div class="form-group">-->
+                    <div class="form-group">
                         <div class="form-group">
                             <div class="player">
                                 <img id="play" src="../site/static/play-white.png" onclick="document.getElementById('audio').play(); $(this).hide(); $('#pause').show()">
@@ -48,15 +46,13 @@
                                 <input id="vol" type="range" min="0" max="100">
                             </div>
                         </div>
-                    <!--</div>-->
+                    </div>
                     <div class="form-group">
                         <input value="{{ .search_field }}" type="text" class="form-control" placeholder="name or #tag" onchange="search(this)" title="start with # to search for tags">
                     </div>
                     <button id="logout" class="btn btn-success">Log out</button>
-                    <!--</div>-->
                 </div>
             </div>
-        <!--</div>-->
     </nav>
 
     <!--</nav>-->
