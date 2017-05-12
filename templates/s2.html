@@ -72,7 +72,7 @@
     <div id="app" class="container">
         <div id="song-list">
             {{ range $i, $f := .files }}
-            <div id="song-{{$i}}" class="song">
+            <div id="song-{{$i}}" class="song not-playing">
                 <div class="play-button" onclick="playSong('{{ $f.Name }}','{{ $f.Id }}',{{ $i }})">
                     <img src="static/grey-sound.jpg">
                 </div>

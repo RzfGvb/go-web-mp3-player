@@ -34,11 +34,16 @@
   display: -ms-flexbox;
   display: flex;
   border-style: solid;
-  border-color: gray;
   border-radius: 3px;
   border-width: 2px;
 }
 
+.not-playing {
+  border-color: gray;
+}
+.playing {
+  border-color: deepskyblue;
+}
 .play-button {
   width: 48px;
   height: 100%;
