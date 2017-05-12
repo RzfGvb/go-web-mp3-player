@@ -116,9 +116,8 @@ func getFiles(user string) []*file {
 			return nil
 		})
 	fmt.Println("LEN:", len(filenames))
-	db.Update(func(tx *bolt.Tx) error {
+	db.View(func(tx *bolt.Tx) error {
 		root := tx.Bucket([]byte(user))
-		//b, err := root.CreateBucketIfNotExists([]byte("files"))
 		b := root.Bucket([]byte("files"))
 		if b == nil {
 			return nil

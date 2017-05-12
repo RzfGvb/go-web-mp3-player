@@ -53,7 +53,6 @@ func initApp(router *gin.Engine) {
 
 func handleRoot(c *gin.Context) {
 	id, _ := c.Cookie("JAMPY_USER_ID")
-	//checkCookie(c)
 	fs := getFiles(id)
 	if fs == nil {
 		fmt.Println()
@@ -79,7 +78,6 @@ func handleRoot(c *gin.Context) {
 }
 
 func handleSearch(c *gin.Context) {
-	//checkCookie(c)
 	fmt.Println("SEARCHING.....")
 	id, _ := c.Cookie("JAMPY_USER_ID")
 	name := c.Query("name")
