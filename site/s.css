@@ -1,19 +1,16 @@
 
 #logo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
+  /*display: -webkit-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: flex;*/
+    /*-webkit-box-align: end;*/
+    /*-ms-flex-align: end;*/
+    /*align-items: flex-end;*/
 }
 #app {
   margin-top: 52px;
   min-height: 100%;
   width: 100%;
-}
-.navbar {
-  margin-bottom: 30px;
 }
 #song-list {
   width: 90%;
