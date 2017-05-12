@@ -87,7 +87,7 @@
                         <input class="add-inp" onchange="addTag(this,'{{ $f.Id }}')" placeholder="Add Tag" style="display: none">
                     </div>
                 </div>
-                {{$x := $x +1 }}
+                {{$x := inc $x }}
             </div>
             {{ end }}
         </div>
