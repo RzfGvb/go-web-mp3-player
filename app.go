@@ -13,8 +13,6 @@ import (
 
 	"io"
 
-	"html/template"
-
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -34,16 +32,7 @@ func initApp(router *gin.Engine) {
 	router.Static("/skin/blue.monday/image", "./site/skin/blue.monday/image")
 	router.Static("/skin/blue.monday/mustache", "./site/skin/blue.monday/mustache")
 
-	funcName := template.FuncMap{
-		"inc": func(i int) int {
-			return i + 1
-		},
-	}
-	if tmpl, err := template.New("name").Funcs(funcName).ParseGlob("templates/*"); err == nil {
-		router.SetHTMLTemplate(tmpl)
-	} else {
-		panic(err)
-	}
+	router.LoadHTMLGlob("templates/*")
 }
 
 //--------------------------
