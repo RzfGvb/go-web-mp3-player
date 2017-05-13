@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9abf8501-0747-415a-8c0a-2a3ad3bbc7e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api.go" afterPath="$PROJECT_DIR$/api.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site/s2.js" afterPath="$PROJECT_DIR$/site/s2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/s2.html" afterPath="$PROJECT_DIR$/templates/s2.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="api.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="174" column="18" lean-forward="false" selection-start-line="174" selection-start-column="18" selection-end-line="174" selection-end-column="18" />
+            <state relative-caret-position="222">
+              <caret line="162" column="24" lean-forward="false" selection-start-line="162" selection-start-column="24" selection-end-line="162" selection-end-column="24" />
               <folding>
                 <element signature="e#14#235#0" expanded="true" />
               </folding>
@@ -680,8 +678,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="174" column="18" lean-forward="false" selection-start-line="174" selection-start-column="18" selection-end-line="174" selection-end-column="18" />
+        <state relative-caret-position="222">
+          <caret line="162" column="24" lean-forward="false" selection-start-line="162" selection-start-column="24" selection-end-line="162" selection-end-column="24" />
           <folding>
             <element signature="e#14#235#0" expanded="true" />
           </folding>

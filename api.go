@@ -160,7 +160,7 @@ func makeSearch(id, name, tag string) []*file {
 	}
 	foundfs := make([]*file, 0, len(fnames))
 	for _, f := range fnames {
-		if strings.Contains(strings.ToLower(f.Name), name) {
+		if name != "" && strings.Contains(strings.ToLower(f.Name), name) {
 			foundfs = append(foundfs, f)
 		}
 		if tag != "" {
