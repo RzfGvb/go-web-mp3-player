@@ -158,26 +158,21 @@ func makeSearch(id, name, tag string) []*file {
 	if fnames == nil {
 		return nil
 	}
-	for i, f := range fnames {
-		if !strings.Contains(strings.ToLower(f.Name), name) {
-			fnames[i] = nil
-			fnames = append(fnames[:i], fnames[i+1:]...)
+	foundfs := make([]*file, 0, len(fnames))
+	for _, f := range fnames {
+		if strings.Contains(strings.ToLower(f.Name), name) {
+			foundfs = append(foundfs, f)
 		}
 		if tag != "" {
-			var found bool
 			for _, t := range f.Tags {
 				if t == tag {
-					found = true
+					foundfs = append(foundfs, f)
 					break
 				}
 			}
-			if !found {
-				fnames[i] = nil
-				fnames = append(fnames[:i], fnames[i+1:]...)
-			}
 		}
 	}
-	return fnames
+	return foundfs
 }
 
 func handleSearchApi(c *gin.Context) {

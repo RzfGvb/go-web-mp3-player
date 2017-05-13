@@ -1,11 +1,12 @@
 const cookie_name = "JAMPY_USER_ID";
 var songnow = -1;
+var vol_val;
+
 function showInp(img) {
     let i = $(img);
     i.hide();
     i.parents().children("input").show();
     i.parents().children("input").focus();
-
 }
 
 function addTag(txt, id) {
@@ -39,6 +40,8 @@ function playSong(name, id, i) {
     w.play();
     w.volume = $("#vol").val()/100;
 }
+
+
 
 function search(inp) {
     var txt = inp.value;
@@ -77,7 +80,6 @@ $(document).ready(() => {
     $('#vol').change(function () {
         document.getElementById('audio').volume = $(this).val()/100;
     });
-    var vol_val;
     $("#vol-img").click(function () {
         var vol = $("#vol");
         if (vol.val() == 0) {
