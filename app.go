@@ -22,7 +22,7 @@ func initApp(router *gin.Engine) {
 	g.Use(checkCookie)
 	g.GET("/", handleRoot)
 	g.GET("/search", handleSearch)
-	g.GET("/file/:id/x.mp3", handleFileGet)
+	g.GET("/file/:id", handleFileGet)
 	router.GET("/reg", handleReg)
 
 	router.Static("/site", "./site/")

@@ -36,7 +36,7 @@ function playSong(name, id, i) {
     $("#pause").show();
     $("#play").hide();
     var w = document.getElementById("audio");
-    w.src = "/file/"+id+"/x.mp3";
+    w.src = "/file/"+id;
     w.play();
     w.volume = $("#vol").val()/100;
 }
