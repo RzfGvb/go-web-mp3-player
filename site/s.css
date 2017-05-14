@@ -138,6 +138,18 @@
   display: none;
 }
 
+#shuffle-img, #repeat-img {
+  height: 18px;
+}
+
+.not-active-img {
+  color: #fff;
+}
+
+.active-img {
+  color: deepskyblue;
+}
+
 #vol-img, #forward-img, #backwards-img {
   height: 30px;
   margin-left: 3px;

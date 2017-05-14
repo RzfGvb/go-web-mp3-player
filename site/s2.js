@@ -124,19 +124,23 @@ $(document).ready(() => {
     $("#repeat-img").click(function () {
         if (on_repeat === false) {
             on_repeat = true;
-            $(this).css("color", "deepskyblue");
+            $(this).removeClass("not-active-img");
+            $(this).addClass("active-img");
         } else {
             on_repeat = false;
-            $(this).css("color", "#fff");
+            $(this).removeClass("active-img");
+            $(this).addClass("not-active-img");
         }
     });
     $("#shuffle-img").click(function () {
         if (on_shuffle === false) {
             on_shuffle = true;
-            $(this).css("color", "deepskyblue");
+            $(this).removeClass("not-active-img");
+            $(this).addClass("active-img");
         } else {
             on_shuffle = false;
-            $(this).css("color", "#fff");
+            $(this).removeClass("active-img");
+            $(this).addClass("not-active-img");
         }
     })
 });
