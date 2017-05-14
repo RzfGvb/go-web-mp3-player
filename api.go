@@ -13,7 +13,6 @@ import (
 	"github.com/boltdb/bolt"
 	"golang.org/x/oauth2"
 	"google.golang.org/api/drive/v3"
-	"google.golang.org/api/googleapi"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -27,6 +26,7 @@ func initAPI(engine *gin.Engine) {
 	r.DELETE("/files/:id/:tag", handleDeleteTagApi)
 	r.POST("/file/:id", handleFileApi)
 	r.POST("/search", handleSearchApi)
+	r.GET("/alive", handleAliveApi)
 }
 
 //-----------------------
@@ -44,14 +44,12 @@ func handleNewApi(c *gin.Context) {
 	if code == "" {
 		log.Println("No code")
 	}
-	fmt.Println("got code ....", code)
 	var err error
 	tok, err = config.Exchange(ctx, code)
 	if err != nil {
 		log.Printf("Unable to retrieve token from web %v", err)
 		return
 	}
-	fmt.Println("TOK2:", tok)
 	tb, err := json.Marshal(tok)
 	if err != nil {
 		log.Printf("Unable to retrieve token from web %v", err)
@@ -69,7 +67,6 @@ func handleNewApi(c *gin.Context) {
 		log.Fatalf("Unable to retrieve drive Client %v", err)
 	}
 	idb := []byte(id)
-	fmt.Println("Registered a user")
 	db.Update(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucketIfNotExists([]byte(idb))
 		if err != nil {
@@ -91,30 +88,27 @@ func handleNewApi(c *gin.Context) {
 }
 
 func getFiles(user string) []*file {
-	filenames := make([]*file, 0, 100)
-	var f1 *file
 	serv := services[user]
 	if serv == nil {
 		fmt.Println("FAIL")
 		return nil
 	}
+	filenames := make([]*file, 0, 100)
+	var f1 *file
 	serv.Files.List().
-		Fields(createFilesFields("id", "name", "webContentLink", "size"), googleapi.Field("nextPageToken")).
+		Fields("user(id, name)", "nextPageToken").
 		Q("mimeType='audio/mpeg'").
 		Pages(ctx, func(fs *drive.FileList) error {
 			for _, f := range fs.Files {
 				f1 = &file{
 					Id:   f.Id,
 					Name: f.Name,
-					Link: f.WebContentLink,
 					Tags: []string{},
 				}
 				filenames = append(filenames, f1)
-				//filenames[f.Id] = f1
 			}
 			return nil
 		})
-	fmt.Println("LEN:", len(filenames))
 	db.View(func(tx *bolt.Tx) error {
 		root := tx.Bucket([]byte(user))
 		b := root.Bucket([]byte("files"))
@@ -136,7 +130,6 @@ func getFiles(user string) []*file {
 		}
 		return nil
 	})
-	fmt.Println("LEN:", len(filenames))
 	return filenames
 }
 
@@ -332,4 +325,9 @@ func handleFileApi(c *gin.Context) {
 		fmt.Println(err.Error())
 	}
 	io.Copy(c.Writer, resp.Body)
+}
+
+func handleAliveApi(c *gin.Context) {
+	//c.String(200, "")
+	c.JSON(200, "1")
 }

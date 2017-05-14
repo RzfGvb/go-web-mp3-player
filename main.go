@@ -44,22 +44,6 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("DEBUG")
-	//db.View(func(tx *bolt.Tx) error {
-	//	tok := new(oauth2.Token)
-	//	tx.ForEach(func(name []byte, b *bolt.Bucket) error {
-	//		bt := b.Get([]byte("token"))
-	//		if bt == nil || len(bt) == 0 {
-	//			return nil
-	//		}
-	//		err := json.Unmarshal(bt, tok)
-	//		if err != nil {
-	//
-	//		}
-	//		resetClient(tok)
-	//		return nil
-	//	})
-	//	return nil
-	//})
 	go func() {
 		sigchan := make(chan os.Signal, 1)
 		signal.Notify(sigchan, os.Interrupt, os.Kill)
@@ -77,9 +61,9 @@ func main() {
 //-----------------------
 
 type file struct {
-	Id   string   `json:"id"`
-	Name string   `json:"name"`
-	Link string   `json:"link"`
+	Id   string `json:"id"`
+	Name string `json:"name"`
+	//Link string   `json:"link"`
 	Tags []string `json:"tags"`
 }
 
