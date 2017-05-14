@@ -81,8 +81,11 @@
                     <div class="song-name">{{ $f.Name }}</div>
                     <div class="tag-list">
                         {{ range $t := $f.Tags}}
-                        <span class="tag-item">{{ $t }}<img onclick="delTag('{{ $t }}','{{ $f.Id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
-                        </span> {{ end }}
+                        <span class="tag-item">
+                            <a href="/search?tag={{ $t }}">{{ $t }}</a>
+                            <img onclick="delTag('{{ $t }}','{{ $f.Id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
+                        </span>
+                        {{ end }}
                         <img class="add-img" onclick="showInp(this)" src="static/add_plus.png" title="Add New Tag">
                         <input class="add-inp" onchange="addTag(this,'{{ $f.Id }}')" placeholder="Add Tag" style="display: none">
                     </div>
