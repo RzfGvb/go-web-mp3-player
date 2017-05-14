@@ -99,7 +99,7 @@ $(document).ready(() => {
         }
     });
     $("#forward-img").click(function () {
-        var next;
+        var next = -1;
         if (on_shuffle === true) {
             if (shuffled_songs.size === num_songs) {
                 shuffled_songs.clear();
