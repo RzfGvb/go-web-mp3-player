@@ -79,6 +79,7 @@ $(document).ready(() => {
         $("#pause").hide();
         $("#play").show();
         $("#time").html("00:00");
+        $("#forward-img").trigger("onclick");
     });
     $('#vol').change(function () {
         document.getElementById('audio').volume = $(this).val()/100;
