@@ -96,7 +96,7 @@ func getFiles(user string) []*file {
 	filenames := make([]*file, 0, 100)
 	var f1 *file
 	serv.Files.List().
-		Fields("user(id, name)", "nextPageToken").
+		Fields("nextPageToken, user(id, name)").
 		Q("mimeType='audio/mpeg'").
 		Pages(ctx, func(fs *drive.FileList) error {
 			for _, f := range fs.Files {
