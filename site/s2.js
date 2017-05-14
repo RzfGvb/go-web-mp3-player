@@ -99,7 +99,7 @@ $(document).ready(() => {
         }
     });
     $("#forward-img").click(function () {
-        var next = songnow+1;
+        var next;
         if (on_shuffle === true) {
             if (shuffled_songs.size === num_songs) {
                 shuffled_songs.clear();
@@ -109,10 +109,13 @@ $(document).ready(() => {
                 next = Math.floor(Math.random()*(num_songs-1));
             }
             shuffled_songs.add(songnow);
+        } else {
+            next = songnow+1;
+            if (next === num_songs) {
+                next = 0;
+            }
         }
-        if (next === num_songs) {
-            next = 0;
-        }
+        console.log(songnow, next);
         $("#song-"+next).children(".play-button").trigger("onclick");
     });
     $("#backwards-img").click(function () {
