@@ -143,11 +143,11 @@
 }
 
 .not-active-img {
-  color: #fff;
+  background-color: #fff;
 }
 
 .active-img {
-  color: deepskyblue;
+  background-color: deepskyblue;
 }
 
 #vol-img, #forward-img, #backwards-img {
