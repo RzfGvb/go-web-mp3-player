@@ -1,7 +1,9 @@
 const cookie_name = "JAMPY_USER_ID";
 var songnow = -1;
 var vol_val;
-
+var on_repeat = false;
+var on_shuffle = false;
+var shuffled_songs = new Set();
 function showInp(img) {
     let i = $(img);
     i.hide();
@@ -95,18 +97,46 @@ $(document).ready(() => {
             $(this).attr("src", "./static/no-sound-w.png");
         }
     });
-    $("#forward").click(function () {
+    $("#forward-img").click(function () {
         var next = songnow+1;
+        if (on_shuffle === true) {
+            if (shuffled_songs.size === num_songs) {
+                shuffled_songs.clear();
+            }
+            next = Math.floor(Math.random()*(num_songs-1));
+            while (shuffled_songs.has(next)) {
+                next = Math.floor(Math.random()*(num_songs-1));
+            }
+            shuffled_songs.add(songnow);
+        }
         if (next === num_songs) {
             next = 0;
         }
         $("#song-"+next).children(".play-button").trigger("onclick");
     });
-    $("#backwards").click(function () {
+    $("#backwards-img").click(function () {
         var next = songnow - 1;
         if (next === -1) {
             next = num_songs -1;
         }
         $("#song-"+next).children(".play-button").trigger("onclick");
     });
+    $("#repeat-img").click(function () {
+        if (on_repeat === false) {
+            on_repeat = true;
+            $(this).css("color", "deepskyblue");
+        } else {
+            on_repeat = false;
+            $(this).css("color", "#fff");
+        }
+    });
+    $("#shuffle-img").click(function () {
+        if (on_shuffle === false) {
+            on_shuffle = true;
+            $(this).css("color", "deepskyblue");
+        } else {
+            on_shuffle = false;
+            $(this).css("color", "#fff");
+        }
+    })
 });

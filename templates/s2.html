@@ -45,8 +45,12 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="player">
-                                        <img id="backwards" src="../site/static/backward.png">
-                                        <img id="forward" src="../site/static/forward.png">
+                                        <img id="backwards-img" src="../site/static/backward.png">
+                                        <img id="forward-img" src="../site/static/forward.png">
+                                        <div>
+                                            <img id="shuffle-img" src="../site/static/suffle-option.png">
+                                            <img id="repeat-img" src="../site/static/repeat-arrow.png">
+                                        </div>
                                         <img id="vol-img" src="../site/static/sound-w.png">
                                         <input id="vol" type="range" min="0" max="100">
                                     </div>
@@ -82,7 +86,7 @@
                     <div class="tag-list">
                         {{ range $t := $f.Tags}}
                         <span class="tag-item">
-                            <a href="/search?tag={{ $t }}">{{ $t }}</a>
+                            <a href="/search?tag={{ $t }}" style="color: #000">{{ $t }}</a>
                             <img onclick="delTag('{{ $t }}','{{ $f.Id }}')" class="del-tag" src="static/grey_cross.png" title="Remove Tag">
                         </span>
                         {{ end }}

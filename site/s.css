@@ -138,7 +138,7 @@
   display: none;
 }
 
-#vol-img, #forward, #backwards {
+#vol-img, #forward-img, #backwards-img {
   height: 30px;
   margin-left: 3px;
   margin-right: 3px;
