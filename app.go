@@ -71,19 +71,33 @@ func handleSearch(c *gin.Context) {
 	name := c.Query("name")
 	tag := c.Query("tag")
 	fs := makeSearch(id, name, tag)
-
-	var req string
-	if name != "" {
-		req = name
+	if fs == nil {
+		fmt.Println()
+		c.SetCookie(
+			"JAMPY_USER_ID",
+			"none",
+			-1,
+			"",
+			"",
+			false,
+			false,
+		)
+		fmt.Println("REDIR")
+		c.Redirect(http.StatusPermanentRedirect, "/")
 	} else {
-		req = "#" + tag
+		var req string
+		if name != "" {
+			req = name
+		} else {
+			req = "#" + tag
+		}
+		c.HTML(200, "s2.html", gin.H{
+			"files":        fs,
+			"search_field": req,
+			"text":         "No songs were found.",
+			"num_files":    len(fs),
+		})
 	}
-	c.HTML(200, "s2.html", gin.H{
-		"files":        fs,
-		"search_field": req,
-		"text":         "No songs were found.",
-		"num_files":    len(fs),
-	})
 }
 
 func handleReg(c *gin.Context) {

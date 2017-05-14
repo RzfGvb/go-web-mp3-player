@@ -57,7 +57,7 @@ func handleNewApi(c *gin.Context) {
 	ioutil.WriteFile("tok.json", tb, 0600)
 	client = config.Client(ctx, tok)
 	service, err = drive.New(client)
-	x, err := service.About.Get().Fields("user(permissionId, emailAddress)").Do()
+	x, err := service.About.Get().Fields("user(permissionId)").Do()
 	if err != nil {
 		fmt.Println("err: ", err.Error())
 	}

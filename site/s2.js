@@ -26,11 +26,13 @@ function delTag(tag, id) {
     window.location.reload()}
 
 function playSong(name, id, i) {
-    $("#song-"+songnow).removeClass("playing");
-    $("#song-"+songnow).addClass("not-playing");
+    var song = $("#song-"+songnow);
+    song.removeClass("playing");
+    song.addClass("not-playing");
     songnow = i;
-    $("#song-" +i).removeClass("not-playing");
-    $("#song-" +i).addClass("playing");
+    song = $("#song-" +i);
+    song.removeClass("not-playing");
+    song.addClass("playing");
     $("#time").html("00:00");
     $("#track").html(name);
     $("#pause").show();
@@ -44,15 +46,14 @@ function playSong(name, id, i) {
 
 
 function search(inp) {
-    var txt = inp.value;
-
+    let txt = inp.value;
     if(txt === "") {
         window.location.assign('/');
         return
     }
-    console.log(txt, txt[0] === '#', txt.substring(1));
-    // window.location.assign("example.com");
-    window.location.assign("/search?"+ (txt[0] === '#' ? "tag="+txt.substring(1) : "name="+txt));
+    window.location.assign("/search?" +
+        (txt[0] === '#' ? "tag="+txt.substring(1) : "name="+txt)
+    );
 }
 
 $(document).ready(() => {
@@ -65,9 +66,9 @@ $(document).ready(() => {
     });
     var song = document.getElementById("audio");
     song.addEventListener('timeupdate',function (){
-        var curtime = song.currentTime;
-        var s = parseInt(curtime % 60);
-        var m = parseInt((curtime / 60) % 60);
+        let curtime = song.currentTime;
+        let s = parseInt(curtime % 60);
+        let m = parseInt((curtime / 60) % 60);
         s = (s >= 10) ? s : "0" + s;
         m = (m >= 10) ? m : "0" + m;
         $("#time").html(m + ':' + s );
